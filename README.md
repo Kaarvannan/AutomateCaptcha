@@ -1,7 +1,7 @@
 # Captcha Automation Project
 
 ## Overview
-For Captcha handling, refer to the `SignIn` class (`extractText` function) in the `Pages` package.
+For Captcha handling, refer to the `src/test/java/Pages/Signin.java` class (`extractText` function).
 
 ## Prerequisites
 Before using this code, ensure the following tool is installed:
