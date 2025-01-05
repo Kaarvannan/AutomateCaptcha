@@ -1,0 +1,9 @@
+RunnerClass\firefoxRunner.class
+stepDefinition\commonStepDefinition.class
+RunnerClass\edgeRunner.class
+Kaar\test\BaseClass.class
+Locators\loginPage.class
+Pages\Signin.class
+stepDefinition\pageLogin.class
+RunnerClass\chromeRunnerTest.class
+Kaar\test\TestContext.class
