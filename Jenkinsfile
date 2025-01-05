@@ -4,21 +4,10 @@ pipeline {
         maven 'Maven_3.8.4'  // Use the configured Maven installation in Jenkins
         jdk 'JDK_21'  // Use the configured JDK installation in Jenkins
     }
-    environment {
-        SONARQUBE_SERVER = 'SonarQubeServer'  // SonarQube server defined in Jenkins
-    }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
-            }
-        }
-
-        stage('Static Code Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                    sh 'mvn sonar:sonar'
-                }
+                git branch: 'main', url: 'https://github.com/Kaarvannan/AutomateCaptcha.git'
             }
         }
 
