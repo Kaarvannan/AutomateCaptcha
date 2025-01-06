@@ -45,7 +45,7 @@ pipeline {
                 subject: "Jenkins Build Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """<p>The Jenkins build for ${env.JOB_NAME} has failed.</p>
                          <p>See the console output for details.</p>""",
-                attachLog: true
+                attachLog: true,
                 attachmentPattern: '**/target/cucumber-reports/report.html'
             )
         }
