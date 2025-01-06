@@ -26,7 +26,9 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/cucumber-reports/report.html', allowEmptyArchive: true
                 }
             }
-        }
+        }  // This brace closes the 'stages' block properly
+
+    }  // Missing closing brace added here
 
     post {
         success {
