@@ -13,14 +13,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean install'
+                bat 'mvn clean'
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                bat 'mvn test'
+        stage('Run Test') {
+            parallel {
+                stage('Test on Chrome') {
+                    steps {
+                        sh 'mvn test -Dbrowser=chrome'
+                    }
+                }
+                stage('Test on Edge') {
+                    steps {
+                        sh 'mvn test -Dbrowser=edge'
+                    }
+                }
+                stage('Test on Firefox') {
+                    steps {
+                        sh 'mvn test -Dbrowser=firefox'
+                    }
+                }
             }
+        }
             post {
                 always {
                     archiveArtifacts artifacts: '**/target/cucumber-reports/report.html', allowEmptyArchive: true
