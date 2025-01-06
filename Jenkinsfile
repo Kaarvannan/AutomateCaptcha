@@ -48,7 +48,7 @@ pipeline {
                 body: """<p>The Jenkins build for ${env.JOB_NAME} has failed.</p>
                          <p>See the console output for details.</p>""",
                 attachLog: true,
-                attachmentPattern: '**/target/cucumber-reports/report.html'
+                attachmentsPattern: '**/target/cucumber-reports/report.html'
             )
         }
     }
