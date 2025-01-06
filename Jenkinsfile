@@ -7,12 +7,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'main', url:'https://github.com/Kaarvannan/AutomateCaptcha.git'
+                git branch: 'main', url: 'https://github.com/Kaarvannan/AutomateCaptcha.git'
             }
         }
 
         stage('Build') {
             steps {
+                // Using 'sh' for UNIX-based systems or 'bat' for Windows.
+                // Assuming Windows environment based on 'bat' usage in the initial script
                 bat 'mvn clean'
             }
         }
@@ -21,31 +23,27 @@ pipeline {
             parallel {
                 stage('Test on Chrome') {
                     steps {
-                        sh 'mvn test -Dbrowser=chrome'
+                        bat 'mvn test -Dbrowser=chrome'
                     }
                 }
                 stage('Test on Edge') {
                     steps {
-                        sh 'mvn test -Dbrowser=edge'
+                        bat 'mvn test -Dbrowser=edge'
                     }
                 }
                 stage('Test on Firefox') {
                     steps {
-                        sh 'mvn test -Dbrowser=firefox'
+                        bat 'mvn test -Dbrowser=firefox'
                     }
                 }
             }
         }
-            post {
-                always {
-                    archiveArtifacts artifacts: '**/target/cucumber-reports/report.html', allowEmptyArchive: true
-                }
-            }
-        }  // This brace closes the 'stages' block properly
-
-    }  // Missing closing brace added here
+    }
 
     post {
+        always {
+            archiveArtifacts artifacts: '**/target/cucumber-reports/report.html', allowEmptyArchive: true
+        }
         success {
             emailext(
                 to: 'kaarvannan.97@gmail.com',
