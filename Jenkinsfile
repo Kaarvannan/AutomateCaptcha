@@ -51,7 +51,7 @@ pipeline {
                 body: """<p>The Jenkins build for ${env.JOB_NAME} is successful.</p>
                          <p>See attached test report for more details.</p>""",
                 attachLog: true,
-                attachmentsPattern: '**/target/cucumber-reports/report.html'
+                attachmentsPattern: '**/ExtentReports/SparkReport/HtmlReport/ExtentHtml.html'
             )
         }
         failure {
@@ -61,7 +61,7 @@ pipeline {
                 body: """<p>The Jenkins build for ${env.JOB_NAME} has failed.</p>
                          <p>See the console output for details.</p>""",
                 attachLog: true,
-                attachmentsPattern: '**/target/cucumber-reports/report.html'
+                attachmentsPattern: '**/ExtentReports/SparkReport/HtmlReport/ExtentHtml.html'
             )
         }
     }
