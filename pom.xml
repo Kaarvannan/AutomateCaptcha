@@ -1,145 +1,361 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
 
-  <groupId>Kaar</groupId>
-  <artifactId>test</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <packaging>jar</packaging>
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <name>test</name>
-  <url>http://maven.apache.org</url>
+<modelVersion>4.0.0</modelVersion>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-  </properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
-      </plugin>
+<groupId>Kaar</groupId>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
-        <configuration>
-          <source>21</source>
-          <target>21</target>
-        </configuration>
-      </plugin>
+<artifactId>test</artifactId>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.13.0</version>
-      </plugin>
-    </plugins>
-  </build>
+<version>0.0.3-SNAPSHOT</version>
 
-  <dependencies>
-    <!-- Cucumber dependencies -->
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>7.20.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit-platform-engine</artifactId>
-      <version>7.20.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-picocontainer</artifactId>
-      <version>7.20.1</version>
-    </dependency>
+<packaging>jar</packaging>
 
-    <!-- JUnit 5 -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.11.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.11.4</version>
-      <scope>test</scope>
-    </dependency>
 
-    <!-- Selenium -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.27.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-chrome-driver</artifactId>
-      <version>4.27.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.9.2</version>
-    </dependency>
+<name>test</name>
 
-    <!-- Logging -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>2.24.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.24.3</version>
-    </dependency>
+<url>http://maven.apache.org</url>
 
-    <!-- Reporting -->
-    <dependency>
-      <groupId>tech.grasshopper</groupId>
-      <artifactId>extentreports-cucumber7-adapter</artifactId>
-      <version>1.14.0</version>
-    </dependency>
 
-    <!-- JUnit -->
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-        <scope>test</scope>
-    </dependency>
+<properties>
 
-    <!-- Cucumber JUnit -->
+<junit-bom-scope>import</junit-bom-scope>
+
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+<maven.compiler.source>21</maven.compiler.source>
+
+<maven.compiler.target>21</maven.compiler.target>
+
+</properties>
+
+
+<build>
+
+<plugins>
+
+<plugin>
+
+<groupId>org.apache.maven.plugins</groupId>
+
+<artifactId>maven-surefire-plugin</artifactId>
+
+<version>3.5.2</version>
+
+<configuration>
+
+		<rerunFailingTestsCount>1</rerunFailingTestsCount>
+        <parallel>methods</parallel>
+        <threadCount>3</threadCount>
+                <properties>
+            <configurationParameters>
+                cucumber.junit.platform.naming.strategy=simple
+                cucumber.execution.parallel.enabled=true
+                cucumber.execution.parallel.config.strategy=fixed
+                cucumber.execution.parallel.config.fixed.parallelism=4
+            </configurationParameters>
+        </properties>
+
+        <includes>
+        <include>**/*ChromeRunnerTest.java</include>
+        </includes>
+
+</configuration>
+
+
+</plugin>
+
+
+<plugin>
+
+<groupId>org.apache.maven.plugins</groupId>
+
+<artifactId>maven-compiler-plugin</artifactId>
+
+<version>3.10.0</version>
+
+<configuration>
+
+<source>21</source>
+
+<target>21</target>
+
+</configuration>
+
+</plugin>
+
+
+<plugin>
+
+<groupId>org.apache.maven.plugins</groupId>
+
+<artifactId>maven-dependency-plugin</artifactId>
+
+<version>3.10.0</version>
+
+</plugin>
+
+</plugins>
+
+</build>
+
+
+<dependencies>
+
+<!-- Cucumber dependencies -->
+
+<dependency>
+
+<groupId>io.cucumber</groupId>
+
+<artifactId>cucumber-java</artifactId>
+
+<version>7.20.1</version>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit-platform-engine</artifactId>
+    <version>7.20.1</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+
+<groupId>io.cucumber</groupId>
+
+<artifactId>cucumber-picocontainer</artifactId>
+
+<version>7.20.1</version>
+
+</dependency>
+
+
+<!-- JUnit 5 -->
+
+<dependency>
+
+<groupId>org.junit.jupiter</groupId>
+
+<artifactId>junit-jupiter-engine</artifactId>
+
+<version>5.11.4</version>
+
+<scope>test</scope>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+
+<dependency>
+
+<groupId>org.junit.jupiter</groupId>
+
+<artifactId>junit-jupiter-api</artifactId>
+
+<version>5.11.4</version>
+
+<scope>test</scope>
+
+</dependency>
+
+
+<!-- Selenium -->
+
+<dependency>
+
+<groupId>org.seleniumhq.selenium</groupId>
+
+<artifactId>selenium-java</artifactId>
+
+<version>4.27.0</version>
+
+</dependency>
+
+<dependency>
+
+<groupId>org.seleniumhq.selenium</groupId>
+
+<artifactId>selenium-chrome-driver</artifactId>
+
+<version>4.27.0</version>
+
+</dependency>
+
+<dependency>
+
+<groupId>io.github.bonigarcia</groupId>
+
+<artifactId>webdrivermanager</artifactId>
+
+<version>5.9.2</version>
+
+</dependency>
+
+
+<!-- Logging -->
+
+<dependency>
+
+<groupId>org.apache.logging.log4j</groupId>
+
+<artifactId>log4j-core</artifactId>
+
+<version>2.24.3</version>
+
+</dependency>
+
+<dependency>
+
+<groupId>org.apache.logging.log4j</groupId>
+
+<artifactId>log4j-api</artifactId>
+
+<version>2.24.3</version>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+
+<dependency>
+
+<groupId>org.slf4j</groupId>
+
+<artifactId>slf4j-api</artifactId>
+
+<version>2.0.16</version>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+
+<dependency>
+
+<groupId>org.slf4j</groupId>
+
+<artifactId>slf4j-simple</artifactId>
+
+<version>2.0.16</version>
+
+<scope>test</scope>
+
+</dependency>
+
+
+
+<!-- Reporting -->
+
+<dependency>
+
+<groupId>tech.grasshopper</groupId>
+
+<artifactId>extentreports-cucumber7-adapter</artifactId>
+
+<version>1.14.0</version>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.1.2</version>
+</dependency>
+
+
+<!-- Cucumber JUnit -->
+
+
+<dependency>
+
+<groupId>org.junit</groupId>
+
+<artifactId>junit-bom</artifactId>
+
+<version>5.11.4</version>
+
+<type>pom</type>
+
+</dependency>
+
+<dependency>
+
+<groupId>org.junit.platform</groupId>
+
+<artifactId>junit-platform-suite</artifactId>
+
+<version>1.9.3</version>
+
+<scope>test</scope>
+
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-launcher</artifactId>
+    <version>1.11.4</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- Tess4J -->
+
+<dependency>
+
+<groupId>net.sourceforge.tess4j</groupId>
+
+<artifactId>tess4j</artifactId>
+
+<version>5.4.0</version>
+
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-layout-template-json -->
+
+<dependency>
+
+<groupId>org.apache.logging.log4j</groupId>
+
+<artifactId>log4j-layout-template-json</artifactId>
+
+<version>2.24.3</version>
+
+</dependency>
+
+
+
+<!-- Additional Dependencies -->
+
+<dependency>
+
+<groupId>org.projectlombok</groupId>
+
+<artifactId>lombok</artifactId>
+
+<version>1.18.30</version>
+
+<scope>provided</scope>
+
+</dependency>
+
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.15.2</version> <!-- Ensure this version matches your other Jackson dependencies -->
+</dependency>
+    <!-- Cucumber JUnit dependency -->
     <dependency>
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-junit</artifactId>
-        <version>7.13.0</version>
+        <version>5.7.0</version>
         <scope>test</scope>
     </dependency>
 
-    <!-- Tess4J -->
-    <dependency>
-        <groupId>net.sourceforge.tess4j</groupId>
-        <artifactId>tess4j</artifactId>
-        <version>5.4.0</version>
-    </dependency>
+</dependencies>
 
-    <!-- Additional Dependencies -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.30</version>
-      <scope>provided</scope>
-    </dependency>
-    </dependencies>
 </project>
+
+

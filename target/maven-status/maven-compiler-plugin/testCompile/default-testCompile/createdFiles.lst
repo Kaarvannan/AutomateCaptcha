@@ -1,0 +1,7 @@
+stepDefinition\commonStepDefinition.class
+Kaar\test\BaseClass.class
+Locators\loginPage.class
+Pages\Signin.class
+RunnerClass\ChromeRunnerTest.class
+stepDefinition\pageLogin.class
+Kaar\test\TestContext.class
