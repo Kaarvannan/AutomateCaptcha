@@ -1,27 +1,21 @@
 package stepDefinition;
 
-import Kaar.test.BaseClass;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
-
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
+
+import Kaar.test.BaseClass;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.Status;
 public class commonStepDefinition {
 	private static final Logger logger = LogManager.getLogger(stepDefinition.commonStepDefinition.class);
 
@@ -53,9 +47,9 @@ public class commonStepDefinition {
 
 		// Initialize WebDriver
 		base.getDriver();
-		base.threadLocalDriver.get().manage().window().maximize();
+		base.driverInstance.manage().window().maximize();
 		logger.info("Starting scenario: " + scenario.getName());
-		extentTest = extent.createTest(scenario.getName());
+		extentTest = extent.createTest(scenario.getName()).assignCategory(base.browserName);
 
 		//        System.out.println("Starting scenario: " + scenario.getName() );
 	}
@@ -65,11 +59,10 @@ public class commonStepDefinition {
 		logger.info(scenario.getStatus());
 
 
-
 		//		if (base != null && base.driver.get() != null) {
 
 		try {
-			if (scenario.isFailed()) {
+			if (scenario.getStatus().equals(Status.SKIPPED)||scenario.getStatus().equals(Status.FAILED)||scenario.getStatus().equals(Status.UNDEFINED)) {
 
 				//				base.takeScreenshot();
 
@@ -90,11 +83,11 @@ public class commonStepDefinition {
 				extentTest.pass("Scenario Passed");
 				//				base.takeScreenshot();
 
-				Set<String> k =base.threadLocalDriver.get().getWindowHandles();
+				Set<String> k =base.driverInstance.getWindowHandles();
 
 				for (String h:k) {
-					base.threadLocalDriver.get().manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-					base.threadLocalDriver.get().switchTo().window(h);
+					base.driverInstance.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+					base.driverInstance.switchTo().window(h);
 
 					byte[] screenshot = base.takeScreenshot();
 					if (screenshot != null) {
@@ -111,14 +104,15 @@ public class commonStepDefinition {
 				//	            base.takeScreenshotFile();
 				//                extentTest.addScreenCaptureFromPath(screenshotPath); 
 
-				base.threadLocalDriver.get().quit();
+				base.driverInstance.quit();
+				System.out.println("closedddddddddddddddddddddddddddddddddddddddddddddddds");
 
 			}
 		} catch (Exception e) {
 			logger.error("Error during After Scenario teardown: ", e);
 		} finally {
 			//			cleanUpDrivers();
-			base.threadLocalDriver.get().quit();
+			base.driverInstance.quit();
 			extent.flush();
 		}
 	}

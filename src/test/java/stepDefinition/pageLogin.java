@@ -29,14 +29,14 @@ public class pageLogin {
 
     @When("Enter {string} count {int}")
     
-    public void enterEmail(String email, int number) {
+    public void enterEmail(String email, int number) throws IOException, TesseractException {
         page.enterEmail(email,number);
     }
 
     
  @When("Enter email")
     
-    public void enterEmail2() {
+    public void enterEmail2() throws IOException, TesseractException {
         page.enterEmail2();
     }
 
@@ -48,7 +48,7 @@ public class pageLogin {
     }
     
     @When("Search iphone")
-    public void searchIphone() {
+    public void searchIphone() throws IOException, TesseractException {
     	page.searchIphone();
     }
 

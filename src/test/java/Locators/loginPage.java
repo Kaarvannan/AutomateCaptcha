@@ -36,16 +36,16 @@ BaseClass base;
 	}
 
 
-	@FindBy(id = "nav-link-accountList-nav-line-1")
+	@FindBy(css = "#nav-link-accountList-nav-line-1")
 	private WebElement summHello;
 	
 	
-	@FindBy(xpath="(//input[@class ='a-input-text a-span12 auth-autofocus auth-required-field auth-require-claim-validation' ])")
+	@FindBy(xpath="(//input[@id = 'ap_email_login' and @class='a-input-text'or @class ='a-input-text a-span12 auth-autofocus auth-required-field auth-require-claim-validation'])")
 	
 	private WebElement email;	
 	
 
-	@FindBy(xpath ="(//span[@class ='a-button a-button-span12 a-button-primary'])")
+	@FindBy(css ="span.a-button a-button-span12 a-button-primary")
 	
 	private WebElement continueButton;
 	
@@ -55,7 +55,7 @@ BaseClass base;
 	@FindBy(xpath="(//h2[@class='a-size-medium a-spacing-none a-color-base a-text-normal']/span[contains(text(),'iPhone')]//following::a[3]/span[1]/span[@class='a-offscreen']")
 	private WebElement phoneprice;
 	
-	@FindBy(xpath="(//input[@id='twotabsearchtextbox'])")
+	@FindBy(css="input#twotabsearchtextbox")
 	private WebElement searchBar;
 	
 	
@@ -71,12 +71,12 @@ BaseClass base;
 	
 	private WebElement previousButton;
 	
-	@FindBy(id ="captchacharacters")
+	@FindBy(css="#captchacharacters")
 	private WebElement captchaEntry;
 
 
 
-	@FindBy(xpath="((//img[@src])[1])")
+	@FindBy(xpath="//h4[contains(text(),'Type the characters you see in this image:')]//following::img[@src][1]")
 	private WebElement captcha;
 	
 	@FindBy(xpath ="(//button[@type=\"submit\"])")
