@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: RunnerClass.ChromeRunnerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 68.05 s -- in RunnerClass.ChromeRunnerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 71.08 s -- in RunnerClass.ChromeRunnerTest

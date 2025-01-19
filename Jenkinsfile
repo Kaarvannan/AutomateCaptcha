@@ -42,7 +42,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/target/cucumber-reports/report.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/ExtentReports/SparkReport/HtmlReport/ExtentHtml.html', allowEmptyArchive: true
         }
         success {
             emailext(

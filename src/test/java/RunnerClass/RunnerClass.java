@@ -15,5 +15,5 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty,com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:") 
 @Execution(ExecutionMode.CONCURRENT)
 
-public class ChromeRunnerTest {
+public class RunnerClass {
 }
